@@ -54,8 +54,12 @@ void randomFillMatrix(float **A, const size_t A_rows,
  * @param    e_time  End time object.
  * @return double Time in seconds.
  */
-double getExecutionTime(const struct timespec b_time,
-                          const struct timespec e_time);
+double getExecutionTime(const struct timespec b_time, const struct timespec e_time);
 
+
+// returns 1 if 2 matrices are equal, 0 if not.
+
+int matrixEquals(float **A, const size_t A_rows, const size_t A_cols,
+		        float **B, const size_t B_rows, const size_t B_cols);
 
 #endif // fine header file

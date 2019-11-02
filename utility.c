@@ -69,6 +69,27 @@ void randomFillMatrix(float **A,
     }
 }
 
+int matrixEquals(float **A, const size_t A_rows, const size_t A_cols,
+		        float **B, const size_t B_rows, const size_t B_cols)
+{
+    if ((A_rows != B_rows) || (A_cols != B_cols)) 
+    {
+        return 0;
+    }
+    for (size_t i=0; i<A_rows; i++) 
+    {
+        for (size_t j=0; j<A_cols; j++) 
+        {
+            if (A[i][j] != B[i][j]) 
+            {
+	            return 0;
+            }
+        }
+    }
+    return 1;
+}
+
+
 double getExecutionTime(const struct timespec b_time,
                           const struct timespec e_time)
 {
