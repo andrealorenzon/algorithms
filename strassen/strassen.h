@@ -2,6 +2,6 @@
 
 #include <stdlib.h>
 
-// signatures, to do:  strassen
+void strassen(float **C, float **A, float **B, const size_t n);
 
 #endif // fine header
