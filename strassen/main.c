@@ -12,6 +12,14 @@
 
 int main(int argc, char const *argv[])
 {
-    /* code */
+    /*
+    to do:
+    - test naive multiplication
+    - test strassen
+    - test strassen optimized
+    
+    */
+    
+
     return 0;
 }

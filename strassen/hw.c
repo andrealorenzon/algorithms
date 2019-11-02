@@ -1,13 +1,16 @@
 #include <stdlib.h>
 
 #include "../utility.h"
+#include "hw.h"
 
-/* functions, to do:  
+// functions, to do:
 
+/*
 sumBlocks
 subtractBlocks
 naiveMultiplication
 strassenAuxiliaryOptimized
-strassen
+strassenOptimized
+
+
 */
-    

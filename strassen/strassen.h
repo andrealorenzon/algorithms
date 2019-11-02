@@ -2,6 +2,6 @@
 
 #include <stdlib.h>
 
-/*  code here */
+// signatures, to do:  strassen
 
 #endif // fine header
