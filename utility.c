@@ -9,9 +9,13 @@
 #include <time.h>
 #include <math.h>
 
+
 #include "utility.h"
 
-void naiveMatrixMultiplication(float **C, float **A, float **B,
+#define EPSILON (0.00001)
+
+
+void naive_matrix_mul(float **C, float **A, float **B,
                                 const size_t A_rows, const size_t A_cols,
                                 const size_t B_rows, const size_t B_cols)
 {
@@ -28,7 +32,7 @@ void naiveMatrixMultiplication(float **C, float **A, float **B,
 
 
 
-float **allocateMatrix(const size_t rows, 
+float **allocate_matrix(const size_t rows, 
                        const size_t cols) 
 {
     float **A=(float **)malloc(sizeof(float *)*rows);                           // rows malloc
@@ -36,18 +40,18 @@ float **allocateMatrix(const size_t rows,
     return A;
 }
 
-void deallocateMatrix(void **A, 
+void deallocate_matrix(void **A, 
                       const size_t rows)
 {
     for (size_t i = 0; i < rows; i++) {free(A[i]);}     // inner free() -> cols
     free(A);                                            // outer free() -> rows
 }                      
 
-float **copyMatrix(float **A, 
+float **copy_matrix(float **A, 
                     const size_t rows, 
                     const size_t cols) 
 {
-    float **C = allocateMatrix(rows, cols);   // allocate output matrix
+    float **C = allocate_matrix(rows, cols);   // allocate output matrix
     for (size_t i=0; i<rows; i++) 
     {
         for (size_t j=0; j<cols; j++) {C[i][j]=A[i][j];}  // elementwise copy
@@ -55,7 +59,7 @@ float **copyMatrix(float **A,
     return C;
 }                    
 
-void randomFillMatrix(float **A, 
+void random_fill_matrix(float **A, 
                         const size_t A_rows, 
                         const size_t A_cols, 
                         int max)
@@ -69,7 +73,7 @@ void randomFillMatrix(float **A,
     }
 }
 
-int matrixEquals(float **A, const size_t A_rows, const size_t A_cols,
+int same_matrix(float **A, const size_t A_rows, const size_t A_cols,
 		        float **B, const size_t B_rows, const size_t B_cols)
 {
     if ((A_rows != B_rows) || (A_cols != B_cols)) 
@@ -89,10 +93,32 @@ int matrixEquals(float **A, const size_t A_rows, const size_t A_cols,
     return 1;
 }
 
+int almost_same_matrix(float **A, const size_t A_rows, const size_t A_cols,
+		        float **B, const size_t B_rows, const size_t B_cols)
+{
+    if ((A_rows != B_rows) || (A_cols != B_cols)) 
+    {
+        return 0;
+    }
+    for (size_t i=0; i<A_rows; i++) 
+    {
+        for (size_t j=0; j<A_cols; j++) 
+        {
+            if ((A[i][j] - B[i][j]) > EPSILON)
+            {
+	            return 0;
+            }
+        }
+    }
+    return 1;
+}
 
-double getExecutionTime(const struct timespec b_time,
+
+double get_execution_time(const struct timespec b_time,
                           const struct timespec e_time)
 {
   return (e_time.tv_sec-b_time.tv_sec) + (e_time.tv_nsec-b_time.tv_nsec)/1E9;   // timespecs subtraction
 }
+
+
 

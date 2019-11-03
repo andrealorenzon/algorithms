@@ -18,16 +18,16 @@ typedef struct Matrix
 
 
 // Sums two matrix blocks A, B of size "size" creating block C.
-void sumBlocks(Matrix A, Matrix B, Matrix C, const size_t size);
+void sum_blocks(Matrix A, Matrix B, Matrix C, const size_t size);
 
 // Subtracts two matrix blocks A, B of size "size" creating block C.
-void subtractBlocks(Matrix A, Matrix B, Matrix C, const size_t size);
+void sub_blocks(Matrix A, Matrix B, Matrix C, const size_t size);
 
 // Naive matrix multiplication of A, B of size "size" creating C.
-void naiveMultiplication(Matrix A, Matrix B, Matrix C, const size_t size);
+void naive_mult(Matrix A, Matrix B, Matrix C, const size_t size);
 
 // Auxiliary method for the optimized implementation of Strassen's algorithm.
-void strassenAuxiliaryOptimized(Matrix A, Matrix B, Matrix C, Matrix M, const size_t size);
+void strassen_aux_opt(Matrix A, Matrix B, Matrix C, Matrix M, const size_t size);
 
 /**
  * @brief Performs the matrix multiplication of squared matrices A, B
@@ -40,7 +40,7 @@ void strassenAuxiliaryOptimized(Matrix A, Matrix B, Matrix C, Matrix M, const si
  * of the resulting matrix C and performing allocation outside of the 
  * auxiliary function call.
  */
-void strassenOptimized(float **C, float **A, float **B, const size_t n);
+void strassen_opt(float **C, float **A, float **B, const size_t n);
 
 
 
