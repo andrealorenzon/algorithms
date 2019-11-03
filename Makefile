@@ -13,4 +13,7 @@ strassen: strassen/strassen.c utility.c strassen/main.c strassen/hw.c
 chain: utility.c chain_mult/chain_mm.c chain_mult/main.c
 		$(CC) $(OPT) chain_mult/chain_mm.c chain_mult/main.c utility.c -o chain.x
 
+sorting: utility.c sorting/sorting.c sorting/vector.c sorting/main.c 
+		$(CC) $(OPT) utility.c sorting/sorting.c sorting/vector.c sorting/main.c -o sorting.x
+
 .PHONY: all clean
