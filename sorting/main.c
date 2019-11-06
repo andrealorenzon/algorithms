@@ -8,7 +8,7 @@
 #define MAX_SIZE 67000
 #define PRINT_STOP 1000
 #define INSERTION_STOP 100000
-#define IMPLEMENTED_ALGORITHMS_BY_NOW 5  // remember to edit "all_sorted, at line 73"
+#define IMPLEMENTED_ALGORITHMS_BY_NOW 6  
 
 int main(int argc, char *argv[]) {
     struct timespec b_time, e_time;
@@ -53,12 +53,16 @@ int main(int argc, char *argv[]) {
 
         // execute heapsort
 
-        // PLACEHOLDER: we need a heap first, let's do it after ex.4 on heaps.
+        clock_gettime(CLOCK_REALTIME, &b_time);
+        //heapsort(mat[2], i);
+        quicksort(mat[2], i, 0);
+        clock_gettime(CLOCK_REALTIME, &e_time);
+        heap_time =  get_execution_time(b_time, e_time);
 
         // counting sort
 
         clock_gettime(CLOCK_REALTIME, &b_time);
-        counting_sort(mat[2], i, MAX_SIZE);  // <<<<<<<<<<<<<<<<< REMEMBER TO SET INDEX TO THE APPROPRIATE ROW!!!
+        counting_sort(mat[3], i, MAX_SIZE);  // <<<<<<<<<<<<<<<<< REMEMBER TO SET INDEX TO THE APPROPRIATE ROW!!!
         clock_gettime(CLOCK_REALTIME, &e_time);
         count_time =  get_execution_time(b_time, e_time);
 
@@ -66,7 +70,7 @@ int main(int argc, char *argv[]) {
         // radix sort
 
         clock_gettime(CLOCK_REALTIME, &b_time);
-        radix_sort(mat[3], i); // <<<<<<<<<<<<<<<<< REMEMBER TO SET INDEX TO THE APPROPRIATE ROW!!!
+        radix_sort(mat[4], i); // <<<<<<<<<<<<<<<<< REMEMBER TO SET INDEX TO THE APPROPRIATE ROW!!!
         clock_gettime(CLOCK_REALTIME, &e_time);
         radix_time =  get_execution_time(b_time, e_time);
         
@@ -84,44 +88,44 @@ int main(int argc, char *argv[]) {
         {
             sorted[j] = check_sorted_int(mat[j], i);
         }
-        sorted[4] = check_sorted(mat_unif[0], i);
+        sorted[5] = check_sorted(mat_unif[0], i);
         // end validation
 
 
-        all_sorted = sorted[0] && sorted[1] && sorted[2] && sorted[3] && sorted[4];// && sorted[5];
+        all_sorted = sorted[0] && sorted[1] && sorted[2] && sorted[3] && sorted[4] && sorted[5];
 
         if(i <= INSERTION_STOP)
         {
 
-            printf("%ld\t\t%lf\t%lf\t%lf\t%lf\t%lf\t%f\t\t%d\n",
+            printf("%ld\t\t%lf\t%lf\t%lf\t%lf\t%lf\t%f\t\t%s\n",
                     i, insert_time
                     ,quick_time, 
                     heap_time, 
                     count_time, 
                     radix_time, 
                     bucket_time, 
-                    all_sorted
+                    all_sorted ? "True":"False"
                     );
 
         }
 
         else if (i <= PRINT_STOP)
         {
-            int all_sorted = sorted[1] && sorted[2] && sorted[3] && sorted[4];// && sorted[5];
-            printf("%ld\t\t\t\t%lf\t%lf\t%lf\t%lf\t%lf\t%d\n",
+            int all_sorted = sorted[1] && sorted[2] && sorted[3] && sorted[4] && sorted[5];
+            printf("%ld\t\t\t\t%lf\t%lf\t%lf\t%lf\t%lf\t%s\n",
                     i, quick_time, heap_time, count_time, 
-                    radix_time, bucket_time, all_sorted);
+                    radix_time, bucket_time, all_sorted ? "True":"False");
         }
         else
         {
-            int all_sorted = sorted[1] && sorted[2] && sorted[3] && sorted[4];// && sorted[5];
-            printf("%ld\t\t\t%lf\t%lf\t%lf\t%lf\t%lf\t%d\n",
+            int all_sorted = sorted[1] && sorted[2] && sorted[3] && sorted[4] && sorted[5];
+            printf("%ld\t\t\t%lf\t%lf\t%lf\t%lf\t%lf\t%s\n",
                     i, quick_time, heap_time, count_time, 
-                    radix_time, bucket_time, all_sorted);
+                    radix_time, bucket_time, all_sorted  ? "True":"False");
         }
 
         deallocate_matrix((void **)mat, IMPLEMENTED_ALGORITHMS_BY_NOW);
- //       deallocate_matrix((void **)mat_unif, 1);
+        deallocate_matrix((void **)mat_unif, 1);
         free(sorted);
         
     }

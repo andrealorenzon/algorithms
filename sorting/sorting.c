@@ -2,6 +2,7 @@
 #include <stdlib.h>
 #include "sorting.h"
 #include "../utility.h"
+#include "../heap/heap.h"  // for heapsort
 
 #include "vector.h"
 
@@ -220,4 +221,16 @@ void bucket_sort(float * array, size_t size)
 		}
     }
 	free_bucket(B, size);  // free bucket memory
+}
+
+
+/* HEAP SORT*/
+
+void heapsort(int * array, size_t size)
+{
+    BinaryHeap H = build_heap(array, size, geq);
+    for (int i = size - 1; i >= 1; i--)
+    {
+        array[i] = remove_min(&H);
+    }
 }

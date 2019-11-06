@@ -122,3 +122,43 @@ void heapify(BinaryHeap * Heap, int i)
         }
     }
 }
+
+void heap_decrease_key(BinaryHeap * H, int i, int val)
+{
+    if(H->comp(H->heap[i], val))
+    {
+        printf("Error: %d should be smaller than the selected element %d", 
+               (val, H->heap[i]));
+    }
+
+    H->heap[i] = val;
+    while(!(is_root(i) || H->comp(H->heap[i], H->heap[parent(i)])))
+    {
+        heap_swap(H, i, parent(i));
+        i = parent(i);
+    }
+}
+
+int remove_min(BinaryHeap * H)
+{
+    int min = H->heap[root()];
+    H->heap[root()] = H->heap[last(H)];
+    H->size--;
+    heapify(H, root());
+    return min;
+}
+
+void heap_insert(BinaryHeap * H, int val)
+{
+    H->size++;
+    H->heap[last(H)] = INT_MAX;
+    heap_decrease_key(H, last(H), val);
+}
+
+void heap_print(BinaryHeap * H)
+{
+    printf("\nPrinting Heap with root value: %d", heap_min(H));
+    for(int i = 1; i < H->size; i++)
+        printf(", %d", H->heap[i]);
+    printf("\n");
+}

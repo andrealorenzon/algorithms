@@ -68,5 +68,16 @@ void heap_swap(BinaryHeap * H, size_t i, size_t m);
  */
 void heapify(BinaryHeap * Heap, int i);
 
+// decrease a key in a heap
+void heap_decrease_key(BinaryHeap * H, int i, int val);
+
+// pops smaller element
+int remove_min(BinaryHeap * H);
+
+//insert element in a heap
+void heap_insert(BinaryHeap * H, int val);
+
+// print the heap
+void heap_print(BinaryHeap * H);
 
 #endif // HEAP_H__

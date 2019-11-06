@@ -90,4 +90,11 @@ void radix_sort(int * array, size_t size);
  */
 void bucket_sort(float * array, size_t size);
 
+/**
+ * @brief Heapsort algorithm.
+ * @param  array  A pointer to the array of integers to be sorted.
+ * @param  size   The dimension of the array of integers.
+ */
+void heapsort(int * array, size_t size);
+
 #endif // SORTING_H__
