@@ -191,3 +191,11 @@ void swap(float* a, float *b)
 	*a = *b;
 	*b = temp;
 }
+
+void copy_array_int(int *a, int *b, const size_t size)
+{
+    for (size_t i = 0; i < size; i++) 
+    {
+        a[i] = b[i];
+    }
+}

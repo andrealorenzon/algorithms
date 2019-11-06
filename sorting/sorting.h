@@ -52,5 +52,22 @@ void quicksort_rec(int * array, size_t low, size_t high, size_t central);
  */
 void quicksort(int * array, size_t size, size_t central);
 
+/* HEAP SORT */
+/**
+ * @brief Heapsort algorithm.
+ * @param  array  A pointer to the array of integers to be sorted.
+ * @param  size   The dimension of the array of integers.
+ */
+void heapsort(int * array, size_t size);
+
+/* COUNTING SORT*/
+
+/**
+ * @brief Counting sort algorithm.
+ * @param  array  A pointer to the array of integers to be sorted.
+ * @param  size   The dimension of the array of integers.
+ * @param  bound  The upper bound for the domain of values in array.
+ */
+void counting_sort(int * array, size_t size, size_t bound);
 
 #endif // SORTING_H__

@@ -91,16 +91,16 @@ void insertion_sort_vector(Vector * v)
 //  - implement quicksort calling recursion
 
 // partition
-
+// Casagrande's algorithm
 int partition(int * array, size_t low, size_t high, size_t pivot_idx)
 {
     size_t pivot = array[pivot_idx];  // set a pivot
-    int i = low - 1;
-    int j = high + 1;
+    int i = low - 1;                  // set low index
+    int j = high + 1;                 // set high index
 
-    while(1)
+    while(1)                          // to skip useless swaps, keep doing the following...
     {
-        do
+        do                            // increase i until a value lower than the pivot is found
         {
             ++i;
         } while (array[i] < pivot);  
@@ -108,14 +108,14 @@ int partition(int * array, size_t low, size_t high, size_t pivot_idx)
         do
         {
             j--;
-        } while (array[j] > pivot);
+        } while (array[j] > pivot);   // reduce j until a value higher than the pivot is found
         
-        if (i >= j)
+        if (i >= j)                   // if i reaches j, the partition is complete
         {
-            return j;
+            return j;                 // return the j index
         }
         
-        swap_int(&array[i], &array[j]);
+        swap_int(&array[i], &array[j]);  // if it's not complete, perform a swap and start again
     }
 }
 
@@ -145,4 +145,28 @@ void quicksort(int * array, size_t size, size_t central)
     quicksort_rec(array, 0, size - 1, central);
 }
 
-/////////////////////////////////////////////////////////////
+// counting sort
+
+/* COUNTING SORT */
+
+void counting_sort(int * array, size_t size, size_t bound)
+{
+    int * c = (int *)calloc(bound, sizeof(int));   // allocate an array of "bound" x 0s int
+    int * res = (int *)malloc(sizeof(int) * size); // allocate a result array of size "size" int
+
+    for (int i = 0; i < size; i++)             // for every element, use it as an index, and  
+        c[array[i]]++;                         // increase c[element] value by 1
+    
+    for (int j = 1; j < bound; j++)            // perform a cumulative sum of c
+        c[j] += c[j - 1];
+    
+    for (int i = size - 1; i >= 0; i--)        // for every element of the original array
+    {                                          // preparation of result array:
+        res[c[array[i]] - 1] = array[i];       // sort it by getting the element'th object and placing it in results, in the appropriate place
+        c[array[i]]--;                         // reduce the element counter by 1
+    }
+
+    copy_array_int(array, res, size);  // overwrite original array
+    free(c);                           // free used memory for c and res
+    free(res);
+}

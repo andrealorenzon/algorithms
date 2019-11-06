@@ -8,7 +8,7 @@
 #define MAX_SIZE 6000
 #define PRINT_STOP 1000
 #define INSERTION_STOP 10000
-#define IMPLEMENTED_ALGORITHMS_BY_NOW 2
+#define IMPLEMENTED_ALGORITHMS_BY_NOW 3
 
 int main(int argc, char *argv[]) {
     struct timespec b_time, e_time;
@@ -49,6 +49,18 @@ int main(int argc, char *argv[]) {
         quicksort(mat[1], i, 0); // set pivot = 1 for central pivot. times do not change.
         clock_gettime(CLOCK_REALTIME, &e_time);
         quick_time =  get_execution_time(b_time, e_time);
+
+
+        // execute heapsort
+
+        // PLACEHOLDER: we need a heap first, let's do it after ex.4 on heaps.
+
+        // counting sort
+
+        clock_gettime(CLOCK_REALTIME, &b_time);
+        counting_sort(mat[2], i, MAX_SIZE);  // <<<<<<<<<<<<<<<<< REMEMBER TO SET INDEX TO THE APPROPRIATE ROW!!!
+        clock_gettime(CLOCK_REALTIME, &e_time);
+        count_time =  get_execution_time(b_time, e_time);
 
         
         // Validate the sorting process

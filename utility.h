@@ -76,4 +76,9 @@ int almost_same_matrix(float **A, const size_t A_rows, const size_t A_cols,
 
 void swap_int(int * a, int * b);
 void swap(float* a, float *b);
+
+// Copies array b->a
+void copy_array_int(int *a, int *b, const size_t size);
+
+
 #endif // fine header file
