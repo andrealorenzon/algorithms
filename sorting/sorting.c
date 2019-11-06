@@ -82,3 +82,67 @@ void insertion_sort_vector(Vector * v)
         temp1 = temp1->next;
     }
 }
+
+/////////////////////////////////////////////////////////////////////////////
+// Quick Sort
+// to do: 
+//  - implement partition function
+//  - implement recursion auxiliary
+//  - implement quicksort calling recursion
+
+// partition
+
+int partition(int * array, size_t low, size_t high, size_t pivot_idx)
+{
+    size_t pivot = array[pivot_idx];  // set a pivot
+    int i = low - 1;
+    int j = high + 1;
+
+    while(1)
+    {
+        do
+        {
+            ++i;
+        } while (array[i] < pivot);  
+
+        do
+        {
+            j--;
+        } while (array[j] > pivot);
+        
+        if (i >= j)
+        {
+            return j;
+        }
+        
+        swap_int(&array[i], &array[j]);
+    }
+}
+
+
+// recursive auxiliary function: calls 2 quicksort subprocesses.
+// note: this could be improved by finding a way to call recursion only on the second half
+// to avoid a waiting process, while the "main" process keeps processing the first half,
+// stemming a new process instead of splitting in 2.
+// Check slides for that before presenting project.
+
+void quicksort_rec(int * array, size_t low, size_t high, size_t central)
+{
+    if(low < high)
+    {
+        // if central, set pivot = central, partition, otherwise set pivot = low, partition.
+        int pivot = central ? partition(array, low, high, (high + low) / 2) : partition(array, low, high, low);
+        // recursion
+        quicksort_rec(array, low, pivot, central);
+        quicksort_rec(array, pivot + 1, high, central);
+    }
+}
+
+// quicksort, just calls recursion on the whole array
+
+void quicksort(int * array, size_t size, size_t central)
+{
+    quicksort_rec(array, 0, size - 1, central);
+}
+
+/////////////////////////////////////////////////////////////

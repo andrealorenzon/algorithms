@@ -21,4 +21,36 @@ void insertion_sort_int(int * array, size_t start, size_t size);
 void insertion_sort_vector(Vector * v);
 
 
+/* QUICKSORT */
+
+/**
+ * @brief Partitions the array, putting all elements lower than the pivot before it, and
+ *        all element higher than the pivot after it.
+ * @param  array      A pointer to the array of integers to be sorted.
+ * @param  low        The lower bound index of the array.
+ * @param  high       The upper bound index of the array. 
+ * @param  pivot_idx  The index of the pivot value used for partition.
+ * @return int    The index of the pivot after the partitioning.
+ */
+int partition(int * array, size_t low, size_t high, size_t pivot_idx);
+
+/**
+ * @brief Recursive quicksort auxiliary method.
+ * @param  array    A pointer to the array of integers to be sorted.
+ * @param  low      The lower bound index of the array.
+ * @param  high     The upper bound index of the array. 
+ * @param  central  If 1, uses the central pivot, else uses low.
+ */
+void quicksort_rec(int * array, size_t low, size_t high, size_t central);
+
+/**
+ * @brief Quicksort algorithm
+ * @param  array      A pointer to the array of integers to be sorted.
+ * @param  size       The size of the array to be sorted.
+ * @param  pivot_idx  The index of the pivot value used for partition.
+ * @param  central  If 1, uses the central pivot, else uses low.
+ */
+void quicksort(int * array, size_t size, size_t central);
+
+
 #endif // SORTING_H__

@@ -8,7 +8,7 @@
 #define MAX_SIZE 6000
 #define PRINT_STOP 1000
 #define INSERTION_STOP 10000
-#define IMPLEMENTED_ALGORITHMS_BY_NOW 1
+#define IMPLEMENTED_ALGORITHMS_BY_NOW 2
 
 int main(int argc, char *argv[]) {
     struct timespec b_time, e_time;
@@ -32,6 +32,7 @@ int main(int argc, char *argv[]) {
         // Used to validate sorting results.
         int * sorted = (int *)malloc(sizeof(int) * 6);
 
+        // execute insertion sort
         // Stop it to avoid slowing everything down at large sizes
         if(i <= INSERTION_STOP)
         {
@@ -40,6 +41,14 @@ int main(int argc, char *argv[]) {
             clock_gettime(CLOCK_REALTIME, &e_time);
             insert_time =  get_execution_time(b_time, e_time);
         }
+        
+        // execute quicksort
+
+        clock_gettime(CLOCK_REALTIME, &b_time);
+        //call quicksort without centra pivot
+        quicksort(mat[1], i, 0); // set pivot = 1 for central pivot. times do not change.
+        clock_gettime(CLOCK_REALTIME, &e_time);
+        quick_time =  get_execution_time(b_time, e_time);
 
         
         // Validate the sorting process
