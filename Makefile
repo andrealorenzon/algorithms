@@ -16,4 +16,7 @@ chain: utility.c chain_mult/chain_mm.c chain_mult/main.c
 sorting: utility.c sorting/sorting.c sorting/vector.c sorting/main.c 
 		$(CC) $(OPT) utility.c sorting/sorting.c sorting/vector.c sorting/main.c -o sorting.x
 
+heap: utility.c heap/heap.c heap/main.c 
+		$(CC) $(OPT) utility.c heap/heap.c heap/main.c -o heap.x
+
 .PHONY: all clean

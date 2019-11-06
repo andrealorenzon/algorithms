@@ -8,7 +8,7 @@
 #define MAX_SIZE 67000
 #define PRINT_STOP 1000
 #define INSERTION_STOP 100000
-#define IMPLEMENTED_ALGORITHMS_BY_NOW 4  // remember to edit "all_sorted, at line 73"
+#define IMPLEMENTED_ALGORITHMS_BY_NOW 5  // remember to edit "all_sorted, at line 73"
 
 int main(int argc, char *argv[]) {
     struct timespec b_time, e_time;
@@ -70,14 +70,25 @@ int main(int argc, char *argv[]) {
         clock_gettime(CLOCK_REALTIME, &e_time);
         radix_time =  get_execution_time(b_time, e_time);
         
+        // bucket sort
+
+        clock_gettime(CLOCK_REALTIME, &b_time);
+        bucket_sort(mat_unif[0], i);
+        clock_gettime(CLOCK_REALTIME, &e_time);
+        bucket_time =  get_execution_time(b_time, e_time);
+
+
+
         // Validate the sorting process
         for (size_t j = 0; j < IMPLEMENTED_ALGORITHMS_BY_NOW; j++)
         {
             sorted[j] = check_sorted_int(mat[j], i);
         }
-        sorted[5] = check_sorted(mat_unif[0], i);
+        sorted[4] = check_sorted(mat_unif[0], i);
+        // end validation
 
-        all_sorted = sorted[0] && sorted[1] && sorted[2] && sorted[3];// && sorted[4] && sorted[5];
+
+        all_sorted = sorted[0] && sorted[1] && sorted[2] && sorted[3] && sorted[4];// && sorted[5];
 
         if(i <= INSERTION_STOP)
         {
@@ -96,15 +107,15 @@ int main(int argc, char *argv[]) {
 
         else if (i <= PRINT_STOP)
         {
-            int all_sorted = sorted[1] && sorted[2] && sorted[3] && sorted[4] && sorted[5];
-            printf("%d\t\t\t\t%lf\t%lf\t%lf\t%lf\t%lf\t%d\n",
+            int all_sorted = sorted[1] && sorted[2] && sorted[3] && sorted[4];// && sorted[5];
+            printf("%ld\t\t\t\t%lf\t%lf\t%lf\t%lf\t%lf\t%d\n",
                     i, quick_time, heap_time, count_time, 
                     radix_time, bucket_time, all_sorted);
         }
         else
         {
-            int all_sorted = sorted[1] && sorted[2] && sorted[3] && sorted[4] && sorted[5];
-            printf("%d\t\t\t%lf\t%lf\t%lf\t%lf\t%lf\t%d\n",
+            int all_sorted = sorted[1] && sorted[2] && sorted[3] && sorted[4];// && sorted[5];
+            printf("%ld\t\t\t%lf\t%lf\t%lf\t%lf\t%lf\t%d\n",
                     i, quick_time, heap_time, count_time, 
                     radix_time, bucket_time, all_sorted);
         }

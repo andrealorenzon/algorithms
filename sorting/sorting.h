@@ -79,5 +79,15 @@ void counting_sort(int * array, size_t size, size_t bound);
  */
 void radix_sort(int * array, size_t size);
 
+/* BUCKET SORT */
+
+/**
+ * @brief Bucketsort algorithm.
+ * @param  array  A pointer to the array of integers to be sorted.
+ * @param  size   The dimension of the array of integers.
+ * 
+ * Linear complexity for sorting numbers in a uniform distribution in [0,1).
+ */
+void bucket_sort(float * array, size_t size);
 
 #endif // SORTING_H__

@@ -9,42 +9,42 @@
 
 void insertion_sort(int * array, size_t size)
 {
-    size_t j;
-    for(size_t i = 1; i < size; i++)
+    size_t key;                                    // key of the parsed element
+    for(size_t i = 1; i < size; i++)               // for every element of the array
     {
-        j = i;
-        while (j > 0 && array[j] < array[j-1])
+        key = i;                                   // set the key equal to the current element index
+        while (key > 0 && array[key] < array[key-1])// this cycle checks if there are elements lesser than the key before
         {
-            swap_int(&array[j-1], &array[j]);
-            j--;
+            swap_int(&array[key-1], &array[key]);  // in that case, it swaps them with the key element
+            key--;                                 // then make a step back by reducing the key, rinse and repeat
         }
     }
 }
 
-void insertion_sort_float(float * array, size_t start, size_t size)
+void insertion_sort_float(float * array, size_t start, size_t size) // same but for float
 {
-    size_t j;
+    size_t key;
     for(size_t i = start + 1; i < size; i++)
     {
-        j = i;
-        while (j > start && array[j] < array[j-1])
+        key = i;
+        while (key > start && array[key] < array[key-1])
         {
-            swap(&array[j-1], &array[j]);
-            j--;
+            swap(&array[key-1], &array[key]);
+            key--;
         }
     }
 }
 
-void insertion_sort_int(int * array, size_t start, size_t size)
+void insertion_sort_int(int * array, size_t start, size_t size) // same but for int
 {
-    size_t j;
+    size_t key;
     for(size_t i = start + 1; i < size; i++)
     {
-        j = i;
-        while (j > start && array[j] < array[j-1])
+        key = i;
+        while (key > start && array[key] < array[key-1])
         {
-            swap_int(&array[j-1], &array[j]);
-            j--;
+            swap_int(&array[key-1], &array[key]);
+            key--;
         }
     }
 }
@@ -85,10 +85,6 @@ void insertion_sort_vector(Vector * v)
 
 /////////////////////////////////////////////////////////////////////////////
 // Quick Sort
-// to do: 
-//  - implement partition function
-//  - implement recursion auxiliary
-//  - implement quicksort calling recursion
 
 // partition
 // Casagrande's algorithm
@@ -173,8 +169,6 @@ void counting_sort(int * array, size_t size, size_t bound)
 
 /* RADIX SORT */
 
-/* RADIX SORT */
-
 void radix_sort(int * array, size_t size)
 {
     int max = max_array_int(array, size); // compute max of the array values
@@ -200,4 +194,30 @@ void radix_sort(int * array, size_t size)
         free(c);  // free used memory for c and res
         free(res);
     }
+}
+
+/* BUCKET SORT */
+
+void bucket_sort(float * array, size_t size)
+{
+    Vector * B = build_bucket(size);  // build a bucket (vector of vectors) of the same size of the array
+
+    for (size_t i = 0; i < size; i++)  // for every element
+    {
+        append(&B[(int)(array[i] * size)], array[i]); // insert the element in the relative bucket
+    }
+    for (size_t i = 0; i < size; i++)
+    {
+        insertion_sort_vector(&B[i]); // perform an insertion sort on every bucket
+    }
+    int idx = 0;
+    for(size_t i = 0; i < size; i++)
+	{
+		for(size_t j = 0; j < B[i].length; j++)
+		{
+            array[idx] = get_val(B[i], j);  // concatenate bucket elements
+            idx++;
+		}
+    }
+	free_bucket(B, size);  // free bucket memory
 }
