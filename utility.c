@@ -212,3 +212,13 @@ int max_array_int(int* array, size_t size)
     }
     return max;
 }
+
+int leq(int a, int b)
+{
+    return a <= b;
+}
+
+int geq(int a, int b)
+{
+    return a >= b;
+}

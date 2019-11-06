@@ -60,6 +60,13 @@ int heap_min(BinaryHeap * H);
 // swaps two elements in the heap array, used in heapify
 void heap_swap(BinaryHeap * H, size_t i, size_t m);
 
+/**
+ * @brief Restores the heap property. Used in other methods.
+ * 
+ * @param  H  The heap.
+ * @param  i  The index from which the heapification process will start.
+ */
+void heapify(BinaryHeap * Heap, int i);
 
 
 #endif // HEAP_H__

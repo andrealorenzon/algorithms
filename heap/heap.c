@@ -82,9 +82,43 @@ int heap_min(BinaryHeap * H)
 }
 
 // swaps two elements in the heap array, used in heapify
-void heap_swap(BinaryHeap * H, size_t i, size_t m)
+void heap_swap(BinaryHeap * H, size_t i, size_t j)
 {
   int tmp = H->heap[i];
-  H->heap[i] = H->heap[m];
-  H->heap[m] = tmp;
+  H->heap[i] = H->heap[j];
+  H->heap[j] = tmp;
+}
+
+/**
+ * @brief Restores the heap property. Used in other methods.
+ * 
+ * @param  Heap  The heap.
+ * @param  i  The index from which the heapification process will start.
+ */
+void heapify(BinaryHeap * Heap, int i)
+{
+    int currentNode = -1;   // sets currentNode and startingNode to their beginning values
+    int startingNode = i;
+
+    // Left and right child
+    int leftChild, rightChild;
+
+    while(startingNode != currentNode)
+    {
+        
+        // sets current node to the starting node from which I have to heapify the heap
+        currentNode = startingNode;
+        // identifies its children
+        rightChild = right(currentNode);
+        leftChild = left(currentNode);
+        // if the left child is alredy ok with the comparation function, leave starting node where it is, otherwise sets startingNode to leftChild
+        startingNode = is_valid(Heap, leftChild) && Heap->comp(Heap->heap[leftChild], Heap->heap[startingNode]) ? leftChild : startingNode;
+        // do the same for the right node
+	    startingNode = is_valid(Heap, rightChild) && Heap->comp(Heap->heap[rightChild], Heap->heap[startingNode]) ? rightChild : startingNode;
+        // if the value of startingNode changed, swap values of start and current nodes
+        if(startingNode != currentNode)
+        {
+            heap_swap(Heap, startingNode, currentNode);
+        }
+    }
 }
