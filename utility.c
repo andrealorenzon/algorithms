@@ -40,6 +40,17 @@ float **allocate_matrix(const size_t rows,
     return A;
 }
 
+unsigned int **allocate_matrix_unsigned_int(const size_t rows, const size_t cols)
+{
+    unsigned int **A=(unsigned int **)malloc(sizeof(unsigned int *)*rows);
+
+    for (size_t i=0; i<rows; i++) 
+    {
+        A[i]=(unsigned int *)malloc(sizeof(unsigned int)*cols);
+    }
+    return A;
+}
+
 void deallocate_matrix(void **A, 
                       const size_t rows)
 {
@@ -72,6 +83,19 @@ void random_fill_matrix(float **A,
         }
     }
 }
+
+void random_fill_matrix_unsigned_int(unsigned int **A, const size_t rows, 
+                                     const size_t cols, const unsigned int max)
+{
+    for (size_t i=0; i< rows; i++) 
+    {
+        for (size_t j=0; j< cols; j++) 
+        {
+   	        A[i][j]=(unsigned int)(rand() % max);
+        }
+    }
+}
+
 
 int same_matrix(float **A, const size_t A_rows, const size_t A_cols,
 		        float **B, const size_t B_rows, const size_t B_cols)
@@ -121,4 +145,16 @@ double get_execution_time(const struct timespec b_time,
 }
 
 
+void swap_int(int * a, int * b)
+{
+    int temp = *a;
+    *a = *b;
+    *b = temp;
+}
 
+void swap(float* a, float *b)
+{
+	float temp = *a;
+	*a = *b;
+	*b = temp;
+}

@@ -27,7 +27,7 @@ void naive_matrix_mul(float **C, float **A, float **B,
  * @return   float       The allocated matrix.
  */
 float **allocate_matrix(const size_t rows, const size_t cols);
-
+unsigned int **allocate_matrix_unsigned_int(const size_t rows, const size_t cols);
 
 /**
  * @brief Deallocates a matrix.
@@ -46,7 +46,8 @@ float **copy_matrix(float **A, const size_t rows, const size_t cols);
 // Randomly fills matrix A with values between 0 and max.
 void random_fill_matrix(float **A, const size_t A_rows, 
                           const size_t A_cols, int max);
-
+void random_fill_matrix_unsigned_int(unsigned int **A, const size_t rows, 
+                                     const size_t cols, const unsigned int max);
 
 /**
  * @brief Get the execution time in seconds.
@@ -65,4 +66,7 @@ int same_matrix(float **A, const size_t A_rows, const size_t A_cols,
 int almost_same_matrix(float **A, const size_t A_rows, const size_t A_cols,
 		        float **B, const size_t B_rows, const size_t B_cols);                
 
+
+void swap_int(int * a, int * b);
+void swap(float* a, float *b);
 #endif // fine header file
