@@ -96,6 +96,39 @@ void random_fill_matrix_unsigned_int(unsigned int **A, const size_t rows,
     }
 }
 
+// Randomly fills matrix with uniform distribution values
+void random_fill_matrix_unif(float **A, const size_t rows, const size_t cols)
+{
+    for (size_t i=0; i< rows; i++) 
+    {
+        for (size_t j=0; j< cols; j++) 
+        {
+   	        A[i][j] = (double)rand() / (double)RAND_MAX;
+        }
+    }
+}
+
+int check_sorted(float * array, size_t size)
+{
+    if(size == 1 || size == 0)
+        return 1;
+
+    if (array[size - 1] < array[size - 2])
+        return 0;
+
+    return check_sorted(array, size - 1);
+}
+
+int check_sorted_int(int * array, size_t size)
+{
+    if(size == 1 || size == 0)
+        return 1;
+
+    if(array[size - 1] < array[size - 2])
+        return 0;
+
+    return check_sorted_int(array, size - 1);
+}
 
 int same_matrix(float **A, const size_t A_rows, const size_t A_cols,
 		        float **B, const size_t B_rows, const size_t B_cols)

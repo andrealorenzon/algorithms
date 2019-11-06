@@ -10,10 +10,10 @@
 #define INSERTION_STOP 10000
 #define IMPLEMENTED_ALGORITHMS_BY_NOW 1
 
-int main(int argc, char *argv[]) 
-{
+int main(int argc, char *argv[]) {
     struct timespec b_time, e_time;
     double insert_time, quick_time, heap_time, count_time, radix_time, bucket_time;
+    int all_sorted = 0;
     printf("Size\t\tInsertion\tQuick\t\tHeap\t\tCount\t\tRadix\t\tBucket\t\tAll Sorted\n");
     printf("----\t\t---------\t-----\t\t----\t\t-----\t\t-----\t\t------\t\t----------\n");
  
@@ -24,11 +24,11 @@ int main(int argc, char *argv[])
 
         unsigned int ** mat = allocate_matrix_unsigned_int(IMPLEMENTED_ALGORITHMS_BY_NOW, i);
         random_fill_matrix_unsigned_int(mat, IMPLEMENTED_ALGORITHMS_BY_NOW, i, MAX_SIZE);
-/*
+
         // Matrix of uniformly distributed float values for Bucket sort.
         float ** mat_unif = allocate_matrix(1, i);
         random_fill_matrix_unif(mat_unif, 1, i);
-*/
+
         // Used to validate sorting results.
         int * sorted = (int *)malloc(sizeof(int) * 6);
 
@@ -41,7 +41,7 @@ int main(int argc, char *argv[])
             insert_time =  get_execution_time(b_time, e_time);
         }
 
- /*       
+        
         // Validate the sorting process
         for (size_t j = 0; j < IMPLEMENTED_ALGORITHMS_BY_NOW; j++)
         {
@@ -49,19 +49,19 @@ int main(int argc, char *argv[])
         }
         sorted[5] = check_sorted(mat_unif[0], i);
 
-        int all_sorted = sorted[0] && sorted[1] && sorted[2] && sorted[3] && sorted[4] && sorted[5];
+        all_sorted = sorted[0] && sorted[1] && sorted[2] && sorted[3] && sorted[4] && sorted[5];
 
         if(i <= INSERTION_STOP)
         {
 
-*/            printf("%d\t\t%lf\t%lf\t%lf\t%lf\t%lf\t%zd\t\t%d\n",
+            printf("%ld\t\t%lf\t%lf\t%lf\t%lf\t%lf\t%f\t\t%d\n",
                     i, insert_time
-                    // ,quick_time, 
-                    // heap_time, 
-                    // count_time, 
-                    // radix_time, 
-                    // bucket_time, 
-                    // all_sorted
+                    ,quick_time, 
+                    heap_time, 
+                    count_time, 
+                    radix_time, 
+                    bucket_time, 
+                    all_sorted
                     );
 /*
         }
@@ -83,6 +83,7 @@ int main(int argc, char *argv[])
         deallocate_matrix((void **)mat, IMPLEMENTED_ALGORITHMS_BY_NOW);
  //       deallocate_matrix((void **)mat_unif, 1);
         free(sorted);
+        }
     }
     return 0;
 }

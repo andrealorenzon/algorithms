@@ -48,6 +48,13 @@ void random_fill_matrix(float **A, const size_t A_rows,
                           const size_t A_cols, int max);
 void random_fill_matrix_unsigned_int(unsigned int **A, const size_t rows, 
                                      const size_t cols, const unsigned int max);
+// Randomly fills matrix A with values sampled froma uniform distribution
+void random_fill_matrix_unif(float **A, const size_t rows, const size_t cols);
+
+
+int check_sorted(float * array, size_t size);
+int check_sorted_int(int * array, size_t size);
+
 
 /**
  * @brief Get the execution time in seconds.
