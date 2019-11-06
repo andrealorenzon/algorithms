@@ -5,10 +5,10 @@
 #include "../utility.h"
 #include "sorting.h"
 
-#define MAX_SIZE 6000
+#define MAX_SIZE 67000
 #define PRINT_STOP 1000
-#define INSERTION_STOP 10000
-#define IMPLEMENTED_ALGORITHMS_BY_NOW 3
+#define INSERTION_STOP 100000
+#define IMPLEMENTED_ALGORITHMS_BY_NOW 4  // remember to edit "all_sorted, at line 73"
 
 int main(int argc, char *argv[]) {
     struct timespec b_time, e_time;
@@ -62,6 +62,13 @@ int main(int argc, char *argv[]) {
         clock_gettime(CLOCK_REALTIME, &e_time);
         count_time =  get_execution_time(b_time, e_time);
 
+
+        // radix sort
+
+        clock_gettime(CLOCK_REALTIME, &b_time);
+        radix_sort(mat[3], i); // <<<<<<<<<<<<<<<<< REMEMBER TO SET INDEX TO THE APPROPRIATE ROW!!!
+        clock_gettime(CLOCK_REALTIME, &e_time);
+        radix_time =  get_execution_time(b_time, e_time);
         
         // Validate the sorting process
         for (size_t j = 0; j < IMPLEMENTED_ALGORITHMS_BY_NOW; j++)
@@ -70,7 +77,7 @@ int main(int argc, char *argv[]) {
         }
         sorted[5] = check_sorted(mat_unif[0], i);
 
-        all_sorted = sorted[0] && sorted[1] && sorted[2] && sorted[3] && sorted[4] && sorted[5];
+        all_sorted = sorted[0] && sorted[1] && sorted[2] && sorted[3];// && sorted[4] && sorted[5];
 
         if(i <= INSERTION_STOP)
         {
@@ -84,8 +91,9 @@ int main(int argc, char *argv[]) {
                     bucket_time, 
                     all_sorted
                     );
-/*
+
         }
+
         else if (i <= PRINT_STOP)
         {
             int all_sorted = sorted[1] && sorted[2] && sorted[3] && sorted[4] && sorted[5];
@@ -100,11 +108,11 @@ int main(int argc, char *argv[]) {
                     i, quick_time, heap_time, count_time, 
                     radix_time, bucket_time, all_sorted);
         }
-*/
+
         deallocate_matrix((void **)mat, IMPLEMENTED_ALGORITHMS_BY_NOW);
  //       deallocate_matrix((void **)mat_unif, 1);
         free(sorted);
-        }
+        
     }
     return 0;
 }

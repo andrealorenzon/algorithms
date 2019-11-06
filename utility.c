@@ -199,3 +199,16 @@ void copy_array_int(int *a, int *b, const size_t size)
         a[i] = b[i];
     }
 }
+
+int max_array_int(int* array, size_t size)
+{
+    int max = array[0];
+    for (size_t i = 0; i < size; i++)
+    {
+        if(array[i] > max)
+        {
+            max = array[i];
+        }
+    }
+    return max;
+}

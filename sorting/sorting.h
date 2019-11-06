@@ -70,4 +70,14 @@ void heapsort(int * array, size_t size);
  */
 void counting_sort(int * array, size_t size, size_t bound);
 
+/* RADIX SORT */
+
+/**
+ * @brief Radix sort algorithm.
+ * @param  array  A pointer to the array of integers to be sorted.
+ * @param  size   The dimension of the array of integers.
+ */
+void radix_sort(int * array, size_t size);
+
+
 #endif // SORTING_H__

@@ -80,5 +80,8 @@ void swap(float* a, float *b);
 // Copies array b->a
 void copy_array_int(int *a, int *b, const size_t size);
 
+// Find the max value in an int array of size "size"
+int max_array_int(int* array, size_t size);
+
 
 #endif // fine header file

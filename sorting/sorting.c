@@ -170,3 +170,34 @@ void counting_sort(int * array, size_t size, size_t bound)
     free(c);                           // free used memory for c and res
     free(res);
 }
+
+/* RADIX SORT */
+
+/* RADIX SORT */
+
+void radix_sort(int * array, size_t size)
+{
+    int max = max_array_int(array, size); // compute max of the array values
+    for (size_t i = 1; max / i > 0; i *= 10)   // for every digit of the max value....
+    {  // perform a counting sort on that digit in this way:
+        int * c = (int *)calloc(10, sizeof(int));  // allocate a counter 0-vector of 10 elements
+        int * res = (int *)malloc(sizeof(int) * size); // allocate a result vector of as many elements as the origina array size
+
+        for (size_t j = 0; j < size; j++)  //for every original element
+        {
+            c[(array[j] / i) % 10]++; // increase the counter array correspondent value by one. The value is the element%10
+        }
+        for (int j = 1; j < 10; j++) //for every counter element but the first...
+        {
+            c[j] += c[j - 1];  //..perform a cumulative sum, like for counting sort.
+        }
+        for (int j = size - 1; j >= 0; j--)   // for every element of the original array...
+        {
+            res[c[(array[j] / i) % 10] - 1] = array[j];  // sort it by getting the element'th object and placing it in results, in the appropriate place
+            c[(array[j] / i) % 10]--; // and reduce the element counter by 1
+        }
+        copy_array_int(array, res, size); // overwrite original array
+        free(c);  // free used memory for c and res
+        free(res);
+    }
+}
