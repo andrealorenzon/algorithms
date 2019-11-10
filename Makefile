@@ -5,7 +5,7 @@ OPT = -O4
 all: strassen
 
 clean: 
-	@rm *.x 
+	@rm *.x*
 
 strassen: strassen/strassen.c utility.c strassen/main.c strassen/hw.c
 		$(CC) $(OPT) strassen/hw.c strassen/main.c strassen/strassen.c utility.c -o strassen.x   
@@ -18,5 +18,11 @@ sorting: utility.c sorting/sorting.c sorting/vector.c sorting/main.c heap/heap.h
 
 heap: utility.c heap/heap.c heap/main.c 
 		$(CC) $(OPT) utility.c heap/heap.c heap/main.c -o heap.x
+
+dijkstraV: dijkstra/dijkstraVector.cpp
+		$(C++) $(OPT) dijkstra/dijkstraVector.cpp -o main1.xpp
+
+dijkstra2: dijkstra/utility.cpp dijkstra/main.cpp
+		$(C++) $(OPT) dijkstra/utility.cpp dijkstra/main.cpp -o main2.xpp
 
 .PHONY: all clean
