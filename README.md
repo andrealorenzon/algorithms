@@ -13,3 +13,11 @@ See legend in run file for details.
 ## Matrix chain multiplication
 
 The code provided worked. I commented various functions to understand better the process, reformatted the output. For some reason, optimized solution does not scale linearly with N, for N>16. This could be explained by the code optimization itself.
+
+## Sorting
+
+<add comments>
+  
+## Heap
+
+<add comments>
