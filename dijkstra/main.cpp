@@ -18,6 +18,8 @@ int main(int argc, char const *argv[])
 {
     // randomize rand() seed:
     srand(time(NULL));    
+    //srand(42);
+
 
     // test createMatrix() to create a 10x10 matrix filled with 0s:
     

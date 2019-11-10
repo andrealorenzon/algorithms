@@ -46,9 +46,10 @@ int minDistance( std::vector<int> distanceVector, std::vector<bool>shortestPathS
 /**
  * @brief A utility function to print the  distance array 
  * @param dist the distance array
+ * @param parent a path vector for the shortest path
  */
 
-void printDijkstra(std::vector<int>dist);
+void printDijkstra(std::vector<int>dist, std::vector<int>parent);
 
 /**
  * @brief Dijkstra's implementation
@@ -60,3 +61,13 @@ void printDijkstra(std::vector<int>dist);
 
 
 void dijkstra(std::vector<std::vector<int>> graph, int source);
+
+
+/** 
+ * @brief utility function to print a path to node "dest" from a min path vector
+ * 
+ * @param path a path vector
+ * @param dest the destination node
+ */
+
+void printPath(std::vector<int>path, int dest);

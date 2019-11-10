@@ -5,6 +5,8 @@
 #include <climits>
 #include <cstdint>
 #include <string>
+#include <algorithm>  // reverse
+
 
 /** @brief A utility for square matrix creation and initialization
  *  @param n dimension of the matrix
@@ -44,7 +46,7 @@ void initializeSparseRandomIntegerMatrix (std::vector<std::vector<int>>& adjM, i
 
 //prints a adj matrix
 void representMatrix (std::vector<std::vector<int>>& adjM, int n) {
-    std::cout<<"\nprinting matrix...(visualize on https://graphonline.ru/en/ )"<<std::endl;    
+    std::cout<<"\nprinting matrix...(visualize on https://graphonline.ru/en/create_graph_by_matrix )"<<std::endl;    
 	
     for (auto row = adjM.begin();row != adjM.end(); ++row) {
         
@@ -69,15 +71,31 @@ int minDistance( std::vector<int> distanceVector, std::vector<bool>shortestPathS
     return min_index; 
 }
 
+// prints a shortest path
+void printPath(std::vector<int>path, int dest){
+    
+    if (path[dest]==-1)  {
+        return;
+        } 
+    else {
+        printPath(path, path[dest]);
+        std::cout<<"<"<<dest; 
+    };
+};
+
 //print distance array solution 
-void printDijkstra(std::vector<int>dist) 
+void printDijkstra(std::vector<int>dist, std::vector<int>parent) 
 { 
-    printf("Vertex \t-> Distance from Source\n"); 
+    printf("Vertex \t-> d.fr src \t Path\n"); 
     for (auto i = 0; i < dist.size(); ++i){
-        std::cout << i << "\t->\t"<< (dist[i]==2147483647 ? "no way" : (std::to_string(dist[i]))) <<"\n"; 
+        std::cout << i << "\t->\t"<< (dist[i]==2147483647 ? "no way" : (std::to_string(dist[i]))) << "\t";
+        printPath(parent,i);
+        std::cout<<"\n"; 
     }
     
 } 
+
+
 
 //Dijkstra
  
@@ -93,6 +111,10 @@ void dijkstra(std::vector<std::vector<int>> graph, int source)
     // the node from the source is already computed. Initialize to FALSE.
     std::vector<bool> shortPathSet (n,false);
        
+    // parent array to store shortest path
+    std::vector<int> path(n,0);
+    path[0] = -1;
+    
     // Initialize source-source distance to 0 
     distance[source] = 0; 
   
@@ -115,9 +137,12 @@ void dijkstra(std::vector<std::vector<int>> graph, int source)
                 distance[u] != INT_MAX  &&  // ..and the distance is not infinite..
                 distance[u] + graph[u][v] < distance[v]) // .. and it is a convenient path
 
-                distance[v] = distance[u] + graph[u][v];  // ...then update distance.
+                {
+                    distance[v] = distance[u] + graph[u][v];  // ...then update distance.
+                    path[v]=u;  // update path vector
+                }
     } 
   
     // print the constructed distance array 
-    printDijkstra(distance); 
+    printDijkstra(distance, path); 
 } 
