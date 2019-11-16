@@ -19,10 +19,16 @@ sorting: utility.c sorting/sorting.c sorting/vector.c sorting/main.c heap/heap.h
 heap: utility.c heap/heap.c heap/main.c 
 		$(CC) $(OPT) utility.c heap/heap.c heap/main.c -o heap.x
 
-dijkstraV: dijkstra/dijkstraVector.cpp
-		$(C++) $(OPT) dijkstra/dijkstraVector.cpp -o main1.xpp
+#dijkstraV: dijkstra/dijkstraVector.cpp
+#		$(C++) $(OPT) dijkstra/dijkstraVector.cpp -o main1.xpp
 
 dijkstra2: dijkstra/utility.cpp dijkstra/main.cpp
-		$(C++) $(OPT) dijkstra/utility.cpp dijkstra/main.cpp -o main2.xpp
+		$(C++) $(OPT) dijkstra/utility.cpp dijkstra/main.cpp -o main2.x
+
+dijkstraHeap: dijkstraHeap/main.cpp 
+		$(C++) $(OPT) dijkstraHeap/main.cpp  -o mainH.x
+
+dijkstraOld: dijkstraHeap/mainOld.cpp 
+		$(C++) $(OPT) dijkstraHeap/mainOld.cpp  -o mainOld.x
 
 .PHONY: all clean
