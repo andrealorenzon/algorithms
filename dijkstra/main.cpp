@@ -7,20 +7,37 @@
 #include <vector>
 #include "utility.hpp"
 #include <time.h> // srand
+#include <chrono>
+
+using namespace std::chrono;
 
 
 
-#define MATRIX_SIZE 20   // > 8 for test purposes
+#define MATRIX_SIZE 65536   // > 8 for test purposes, bases of 2 please.
 
 // test createVector
 
 int main(int argc, char const *argv[])
 {
+
+    
     // randomize rand() seed:
     srand(time(NULL));    
     //srand(42);
+    std::vector<std::vector<int>> test = createMatrix(MATRIX_SIZE,0);
+    std::vector<std::vector<int>>& adjMatrix = test;
+    initializeSparseRandomIntegerMatrix(adjMatrix, MATRIX_SIZE);
+    
+
+    auto start = high_resolution_clock::now();
+    dijkstra(test,0);
+    auto stop = high_resolution_clock::now();
+    auto heapTime = duration_cast<microseconds>(stop - start); 
+    
+    std::cout << "Dijkstra algorithm performed in " << heapTime.count() << " microseconds." << std::endl;
 
 
+    /*
     // test createMatrix() to create a 10x10 matrix filled with 0s:
     
     std::vector<std::vector<int>> test = createMatrix(MATRIX_SIZE,0);
@@ -75,5 +92,7 @@ int main(int argc, char const *argv[])
     \n********************************************************\n";
     dijkstra(test,0);
 
+
 	return 0; 
+    */
 }

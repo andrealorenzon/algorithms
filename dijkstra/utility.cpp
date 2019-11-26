@@ -144,5 +144,5 @@ void dijkstra(std::vector<std::vector<int>> graph, int source)
     } 
   
     // print the constructed distance array 
-    printDijkstra(distance, path); 
+    // printDijkstra(distance, path); 
 } 
