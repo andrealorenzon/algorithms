@@ -43,3 +43,4 @@ Number of nodes | avg. Number of edges| VectorTime | HeapTime
 32768|  214.748 M  |  5628.451 | 1590.324
 
 ```
+[Chart](dijkstraSpeed.png)
