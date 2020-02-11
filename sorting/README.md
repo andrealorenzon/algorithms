@@ -22,3 +22,11 @@ If the sort key values are totally ordered, the sort key defines a weak order of
 Workers sorting parcels in a postal facility
 
 A standard order is often called ascending (corresponding to the fact that the standard order of numbers is ascending, i.e. A to Z, 0 to 9), the reverse order descending (Z to A, 9 to 0). For dates and times, ascending means that earlier values precede later ones e.g. 1/1/2000 will sort ahead of 1/1/2001.
+
+In this assignment, the following algorithms has been implemented and they performance benchmarked.
+* Insertion Sort	
+* Quick Sort		
+* Heap Sort		
+* Counting Sort		
+* Radix Sort		
+* Bucket Sort
