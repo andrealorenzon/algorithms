@@ -3,12 +3,11 @@
 #include <time.h>
 
 #include "chain_mm.h"
-#include "../utility.h"
+#include "matrix.h"
 
 
 #define REPETITIONS 3
 #define BILLION 1E9
-#define N_MATRICES 30
 
 
 size_t *build_dimensions(const size_t n) {
@@ -32,7 +31,7 @@ float ***build_problem_instance(const size_t *dims, const size_t n) {
 }
 
 int main() {
-  size_t n = N_MATRICES;  
+  size_t n = 30;
 
   size_t *dims = build_dimensions(n);
   float ***As = build_problem_instance(dims, n);
@@ -57,7 +56,7 @@ int main() {
     accum = (requestEnd.tv_sec - requestStart.tv_sec) +
             (requestEnd.tv_nsec - requestStart.tv_nsec) / BILLION;
 
-    printf("\t\t%lf", (accum / REPETITIONS));
+    printf("\t%lf", (accum / REPETITIONS));
     clock_gettime(CLOCK_REALTIME, &requestStart);
     for (int r = 0; r < REPETITIONS; r++) {
 
@@ -69,7 +68,7 @@ int main() {
     accum = (requestEnd.tv_sec - requestStart.tv_sec) +
             (requestEnd.tv_nsec - requestStart.tv_nsec) / BILLION;
 
-    printf("\t\t%lf\n", (accum / REPETITIONS));
+    printf("\t%lf\n", (accum / REPETITIONS));
   }
 
   for (size_t i = 0; i < n; i++) {

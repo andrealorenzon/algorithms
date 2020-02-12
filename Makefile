@@ -10,8 +10,11 @@ clean:
 strassen: strassen/strassen.c utility.c strassen/main.c strassen/hw.c
 		$(CC) $(OPT) strassen/hw.c strassen/main.c strassen/strassen.c utility.c -o strassen.x   
 
-chain: utility.c chain_mult/chain_mm.c chain_mult/main.c
-		$(CC) $(OPT) chain_mult/chain_mm.c chain_mult/main.c utility.c -o chain.x
+chain: chain_mult/chain_mm.c chain_mult/main.c chain_mult/matrix.c
+		$(CC) $(OPT) chain_mult/chain_mm.c chain_mult/matrix.c chain_mult/main.c -o chain.x
+
+chain_my: chain_mult/my_cmm.c
+		$(CC) $(OPT) chain_mult/my_cmm.c -o chain.x
 
 sorting: utility.c sorting/sorting.c sorting/vector.c sorting/main.c heap/heap.h
 		$(CC) $(OPT) utility.c sorting/sorting.c sorting/vector.c sorting/main.c heap/heap.c -o sorting.x

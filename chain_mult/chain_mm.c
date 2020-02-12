@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-#include "../utility.h"
+#include "matrix.h"
 
 #define CMM(M, row, col) M[row][col - row]
 
@@ -37,9 +37,9 @@ size_t **ChainMatrixMul(size_t *dim, size_t n) {
           CMM(M, i, j - 1) + CMM(M, j, j) + (dim[i] * dim[j + 1]) * dim[j];
       CMM(S, i, j) = j - 1;
 
-      // printf("Searching %ld %ld\n", i, j);
+      //printf("Searching %ld %ld\n", i, j);
       for (size_t k = i + 1; k < j; k++) {
-        // printf("%ld %ld %ld\n", i, k+1, j);
+         //printf("%ld %ld %ld\n", i, k+1, j);
         size_t c = CMM(M, i, k) + CMM(M, k + 1, j) +
                    (dim[i] * dim[j + 1]) * dim[k + 1];
 
@@ -74,7 +74,7 @@ float **evaluate_CMM_aux(float ***As, size_t *dims, const size_t n, size_t **S,
 
   float **R = allocate_matrix(dims[i], dims[j + 1]);
 
-  naive_matrix_mul(R, C1, C2, dims[i], dims[p + 1], dims[p + 1], dims[j + 1]);
+  naive_matrix_mult(R, C1, C2, dims[i], dims[p + 1], dims[p + 1], dims[j + 1]);
 
   deallocate_matrix((void **)C1, dims[i]);
   deallocate_matrix((void **)C2, dims[p + 1]);
@@ -92,7 +92,7 @@ float **evaluate_naive_CMM(float ***As, size_t *dims, const size_t n) {
   for (size_t i = 1; i < n; i++) {
     R = allocate_matrix(dims[0], dims[i + 1]);
 
-    naive_matrix_mul(R, C, As[i], dims[0], dims[i], dims[i], dims[i + 1]);
+    naive_matrix_mult(R, C, As[i], dims[0], dims[i], dims[i], dims[i + 1]);
 
     deallocate_matrix((void **)C, dims[0]);
     C = R;

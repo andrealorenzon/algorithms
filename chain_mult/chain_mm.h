@@ -1,7 +1,6 @@
 #ifndef __CHAIN_MATRIX_MULTIPLICATION__
 
 #include <stdlib.h>
-#include "../utility.h"
 
 size_t **ChainMatrixMul(size_t *dim, size_t n);
 float **evaluate_CMM(float ***As, size_t *dims, const size_t n, size_t **S);
