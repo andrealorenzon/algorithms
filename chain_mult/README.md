@@ -1,6 +1,6 @@
 *For this assignment, the code has been provided.*
 
-*Nonetheless, I also implemented it from scratch in my_cmm.c file.*
+*Nonetheless, I also implemented it from scratch in my_cmm.c file. It can be compiled with make chain_my and run with chain.x A N, where A = number of matrices and N = max dimension size*
 
 
 Matrix chain multiplication (or Matrix Chain Ordering Problem, MCOP) is an optimization problem that can be solved using dynamic programming. Given a sequence of matrices, the goal is to find the most efficient way to multiply these matrices. The problem is not actually to perform the multiplications, but merely to decide the sequence of the matrix multiplications involved.
